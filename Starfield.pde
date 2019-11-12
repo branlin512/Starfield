@@ -4,7 +4,7 @@ PImage ernie, jason;
 void setup()
 {
   size(1000,1000);
-  background(92);
+  background(255,255,255);
   
   for(int i=0; i<99; i++) {
     hongKong[i]=new Particle();
@@ -26,20 +26,29 @@ void draw()
 }
 class Particle
 {
+  double myX, myY, speed,angle;
+  //DECLARE ANGLE 
   Particle() {
-    double myX, myY, mySpeed;
+    myX=myY=500;
+    angle=Math.random() * 2 * Math.PI;
+    speed=Math.random()*6;
   }
-  move() {
-    myX=
+  void move() {
+    myX += Math.sin(angle)*speed;
+    myY += Math.cos(angle)*speed;
   }
-  show() {
-    image(ernie,myX,myY,20,20);
+  void show() {
+    image(ernie,(float)myX,(float)myY,100,100);
   }
 }
 
 class OddballParticle extends Particle //inherits from Particle
 {
-	show() {
-    image(jason,,,20,20);
+	void move() {
+    myY+=(int)(Math.random()*110)-55;
+    myX+=(int)(Math.random()*20)-10;
+  }
+  void show() {
+    image(jason,(float)myX,(float)myY,100,100);
   }
 }
